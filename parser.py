@@ -92,7 +92,9 @@ def main(filter):
     result = []
     i = 0
     for link in links:
-        result.append(getFilmInfo(url+link)) 
+        filmInfo = getFilmInfo(url+link)
+        if filmInfo is not None:
+            result.append(filmInfo) 
 
     filename = "films.csv"   
     with open(filename, "w", newline="", encoding='utf-8') as file:
