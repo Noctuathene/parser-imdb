@@ -9,6 +9,7 @@ import logging
 logging.basicConfig(filename="logs.log", level=logging.INFO)
 url = 'https://www.imdb.com/'
 start = "&start="
+filmNumber = 250
 
 class FilmInfo:
     name = ""
@@ -33,7 +34,7 @@ def findFilmLinksFromPage(url):
 
 def findAllFilmsLinks(url):
     result = []
-    for i in range(int(250 / 250)):
+    for i in range(int(filmNumber / 250)):
         pageNumber = + i*250 + 1
         fullUrl = url + str(pageNumber)+'&count=250'
         result += findFilmLinksFromPage(fullUrl)
@@ -109,6 +110,7 @@ def createParser():
     parser.add_argument('--rating', default="", required=False, help="1.4,9.3")
     parser.add_argument('--genres', default="action", required=False, help="action,comedy,mystery")
     parser.add_argument('--countries', default="", required=False, help="af,ax,al,dz,as,ad,ao,ai")
+    parser.add_argument('--n', required=False, help = "Кол-во фильмов, кратное 250")
     return parser
 
 if __name__ == "__main__":
